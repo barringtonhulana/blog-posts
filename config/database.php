@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Illuminate\Database\DBAL\TimestampType;
 
 return [
 
@@ -144,4 +145,19 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | doctrine/dbal package
+    |--------------------------------------------------------------------------
+    |
+    | If you plan to modify columns created using the timestamp method,
+    | you must uncomment the following configuration below
+    |
+    */
+
+    'dbal' => [
+        'types' => [
+            'timestamp' => TimestampType::class,
+        ],
+    ],
 ];
