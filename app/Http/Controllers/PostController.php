@@ -43,7 +43,8 @@ class PostController extends Controller
         ]);
 
         $post = Post::create($validated);
-        return $post;
+
+        return response($post, 201);
     }
 
     /**
