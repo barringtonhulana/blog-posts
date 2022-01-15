@@ -79,7 +79,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->update($validated);
+
+        return response($post, 200);
     }
 
     /**
