@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -46,9 +46,9 @@ class PostController extends Controller
             'body' => 'required|string|max:255',
         ]);
 
-        $post = Post::create($validated);
+        Post::create($validated);
 
-        return response($post, 201);
+        return redirect('/posts');
     }
 
     /**
