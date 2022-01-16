@@ -3,6 +3,7 @@
 @section('title', $post->title)
 
 @section('content')
+    <a href="{{ secure_url('/posts') }}">Back</a>
     <h1>{{ $post->title }}</h1>
     <p>{{ $post->body }}</p>
     <p>Published at: {{ $post->published_at }}</p>
