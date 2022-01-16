@@ -72,9 +72,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-
-        return view('posts.edit', compact('post'));
+        //
     }
 
     /**
@@ -95,7 +93,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->update($validated);
 
-        return redirect('/posts/' . $post->id);
+        return response($post, 200);
     }
 
     /**
