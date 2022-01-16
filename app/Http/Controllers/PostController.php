@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -15,8 +16,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        foreach($posts as $post) {
+            $post->body = Str::of($post->body)->limit(150);
+        }
 
-        return response($posts, 200);
+        return view('posts.index', compact('posts'));
     }
 
     /**
