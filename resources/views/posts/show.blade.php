@@ -11,4 +11,11 @@
     <div>
         <a href="{{ secure_url('/posts/edit', [$post->id]) }}">Edit Post</a>
     </div>
+    <div>
+        <form action="{{ secure_url('/posts/delete', [$post->id]) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete Post</button>
+        </form>
+    </div>
 @endsection
