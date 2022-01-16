@@ -8,4 +8,7 @@
     <p>Published at: {{ $post->published_at }}</p>
     <p>Created at: {{ $post->created_at }}</p>
     <p>Updated at:{{ $post->updated_at }}</p>
+    <div>
+        <a href="{{ secure_url('posts/edit', [$post->id]) }}">Edit Post</a>
+    </div>
 @endsection
