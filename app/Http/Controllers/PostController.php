@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -15,8 +16,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        foreach($posts as $post) {
+            $post->body = Str::of($post->body)->limit(150);
+        }
 
-        return response($posts, 200);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -26,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -42,9 +46,9 @@ class PostController extends Controller
             'body' => 'required|string|max:255',
         ]);
 
-        $post = Post::create($validated);
+        Post::create($validated);
 
-        return response($post, 201);
+        return redirect('/posts');
     }
 
     /**
@@ -57,7 +61,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return response($post, 200);
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -68,7 +72,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -89,7 +95,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->update($validated);
 
-        return response($post, 200);
+        return redirect('/posts/' . $post->id);
     }
 
     /**
@@ -101,6 +107,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        return response($post->delete(), 204);
+        $post->delete();
+
+        return redirect('/posts');
     }
 }
