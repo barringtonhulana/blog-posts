@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Create new post</h1>
-    <form action="{{ secure_url('/posts/save') }}" method="POST">
+    <form action="{{ secure_url('/posts') }}" method="POST">
         @csrf
         <div>
             <input type="text" name="title" value="">

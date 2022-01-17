@@ -5,7 +5,7 @@
 @section('content')
     <h1>All posts</h1>
     <div>
-        <a href="{{ secure_url('/posts/add') }}">Add New Post</a>
+        <a href="{{ secure_url('/posts/create') }}">Add New Post</a>
     </div>
     @foreach($posts as $post)
         <div>
