@@ -10,10 +10,10 @@
     <p>Created at: {{ $post->created_at }}</p>
     <p>Updated at:{{ $post->updated_at }}</p>
     <div>
-        <a href="{{ secure_url('/posts/edit', [$post->id]) }}">Edit Post</a>
+        <a href="{{ secure_url('/posts', [$post->id, 'edit']) }}">Edit Post</a>
     </div>
     <div>
-        <form action="{{ secure_url('/posts/delete', [$post->id]) }}" method="post">
+        <form action="{{ secure_url('/posts', [$post->id]) }}" method="post">
             @csrf
             @method('DELETE')
             <button type="submit">Delete Post</button>

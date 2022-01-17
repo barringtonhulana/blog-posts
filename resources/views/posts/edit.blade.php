@@ -7,7 +7,7 @@
         <a href="{{ secure_url('/posts', [$post->id]) }}">Back</a>
     </div>
     <h1>Update post: <br>{{ $post->title }}</h1>
-    <form action="{{ secure_url('/posts/update', [$post->id]) }}" method="POST">
+    <form action="{{ secure_url('/posts', [$post->id]) }}" method="POST">
         @csrf
         @method('PUT')
         <div>
