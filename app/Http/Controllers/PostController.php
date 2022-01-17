@@ -54,26 +54,22 @@ class PostController extends Controller
     /**
      * Display the specified post.
      *
-     * @param  int  $id
+     * @param  App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id);
-
         return view('posts.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified post.
      *
-     * @param  int  $id
+     * @param  App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
-
         return view('posts.edit', compact('post'));
     }
 
@@ -81,10 +77,10 @@ class PostController extends Controller
      * Update the specified post in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -92,7 +88,6 @@ class PostController extends Controller
             'slug' => 'required|string|max:255',
         ]);
 
-        $post = Post::findOrFail($id);
         $post->update($validated);
 
         return redirect('/posts/' . $post->id);
@@ -101,12 +96,11 @@ class PostController extends Controller
     /**
      * Remove the specified post from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::findOrFail($id);
         $post->delete();
 
         return redirect('/posts');
